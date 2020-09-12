@@ -40,7 +40,13 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+    constructor(props) {
+        super(props)
+        this.removeAllOptions = this.removeAllOptions.bind(this)
+    }
+
     removeAllOptions() {
+        console.log(this.props.options)
         alert("All options have been removed")
     }
 
