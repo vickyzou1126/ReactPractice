@@ -1,46 +1,51 @@
-const app = {
-    title: 'Indecision App',
-    subtitle: 'Put your life in the hands of a computer',
-    options: []
-};
-
-const onFormSubmit = (e) => {
-    e.preventDefault();
-    const option = e.target.elements.option.value;
-    if (option) {
-        app.options.push(option);
-        e.target.elements.option.value = '';
-        console.log(app.options.length)
+class Header extends React.Component {
+    render() {
+        return (
+            <div>
+                <h1>Indecision</h1>
+                <h2>Put your life in the hands of a computer</h2>
+            </div>
+        )
     }
 }
 
-const numbers = [1, 2, 3];
+class Action extends React.Component {
+    render() {
+        return (
+            <div>
+                <button>What should I do?</button>
+            </div>
+        )
+    }
+}
 
-const onMakeDecision = () => {
-    const randomNum = Math.floor(Math.random() * numbers.length);
-    const option = numbers[randomNum];
-    alert(option);
-};
+class Options extends React.Component {
+    render() {
+        return (
+            <div>
+                <p>Options Component here</p>
+            </div>
+        )
+    }
+}
 
-const template = (
+class AddOption extends React.Component {
+    render() {
+        return (
+            <div>
+                <p>AddOption Component here</p>
+            </div>
+        )
+    }
+}
+
+const jsx = (
     <div>
-        <button disabled={app.options.length === 0} onClick = {onMakeDecision}>What should I do?</button>
-        <ol>
-            {
-                numbers.map(
-                    (option) => {
-                        return <li key={option}>Number: {option}</li>
-                    }
-                ) 
-            }
-        </ol>
-        <form onSubmit={onFormSubmit}>
-            <input type="text" name="option"/>
-            <button>Add Option</button>
-        </form>
+        <Header />
+        <Action />
+        <Options />
+        <AddOption />
     </div>
-);
+)
 
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot);
+ReactDOM.render(jsx, document.getElementById("app"));
