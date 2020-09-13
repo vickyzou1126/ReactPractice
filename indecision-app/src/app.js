@@ -9,6 +9,28 @@ class Indecision extends React.Component {
         this.handleAddOption = this.handleAddOption.bind(this)
         this.removeOption = this.removeOption.bind(this)
     }
+    componentDidMount() {
+        try{
+            const json = localStorage.getItem("options")
+            const options = JSON.parse(json)
+            if(options) {
+                this.setState(() => ({ options }))
+            }
+        } catch(e) {
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.options.length !== this.state.options.length) {
+            const json = JSON.stringify(this.state.options)
+            localStorage.setItem("options", json)
+            console.log("saving data")
+        }
+    }
+
+    componentWillUnmount() {
+        console.log("ComponentWillUnmount")
+    }
 
     handleDeleteOptions() {
         /*this.setState(() => {
@@ -198,9 +220,10 @@ class AddOption extends React.Component {
         /*this.setState(() => {
             return {error}
         })*/
-        this.setState(() => ({
-            options: error
-         }))
+        this.setState(() => ({ error }))
+        if(!error) {
+            e.target.elements.option.value = ""
+        }
     }
 
     render() {
