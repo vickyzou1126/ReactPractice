@@ -63,7 +63,16 @@ class Indecision extends React.Component {
     }
 }
 
-class Header extends React.Component {
+const Header = (props) => {
+    return(
+        <div>
+            <h1>{props.title}</h1>
+            <h2>{props.subtitle}</h2>
+        </div>
+    )
+}
+
+/*class Header extends React.Component {
     render() {
         
         return (
@@ -73,9 +82,17 @@ class Header extends React.Component {
             </div>
         )
     }
+}*/
+
+const Action = (props) => {
+    return (
+        <div>
+            <button onClick={props.handlePick} disabled={!props.hasOptions}>What should I do?</button>
+        </div>
+    )
 }
 
-class Action extends React.Component {
+/*class Action extends React.Component {
     render() {
         return (
             <div>
@@ -83,11 +100,24 @@ class Action extends React.Component {
             </div>
         )
     }
+}*/
+
+
+const Options = (props) => {
+    return (
+        <div>
+             <button onClick={props.handleDeleteOptions}>Remove All</button>
+            {
+                props.options.map((option) => 
+                    <Option key={option} optionText={option} removeOption={props.removeOption} />
+                ) 
+            }
+        </div>
+    )
 }
 
-class Options extends React.Component {
+/*class Options extends React.Component {
     render() {
-        console.log(this.props.options)
         return (
             <div>
                 <button onClick={this.props.handleDeleteOptions}>Remove All</button>
@@ -99,7 +129,7 @@ class Options extends React.Component {
             </div>
         )
     }
-}
+}*/
 
 class Option extends React.Component {
     constructor(props){
@@ -153,4 +183,17 @@ class AddOption extends React.Component {
     }
 }
 
+/*const User = (props) => {
+    return (
+        <div>
+            <p>Name: {props.name}</p>  
+            <p>Age: {props.age}</p>
+        </div>
+    )
+}
+// not this.props.xxx
+ReactDOM.render(<User name="Vicky" age={12} />, document.getElementById("app"));*/
+
 ReactDOM.render(<Indecision />, document.getElementById("app"));
+
+
