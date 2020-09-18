@@ -5,7 +5,7 @@ class Person {
     }
 
     getGreeting() {
-        return `hi, ${this.name} is ${this.age} year(s) old`;
+        return `hi, ${this.name} is ${this.age} year(s) old.`;
     }
 }
 
@@ -20,7 +20,11 @@ class Student extends Person {
     }
 
     getGreeting() {
-        return `hi, ${this.name} is ${this.age} year(s) old and my major is ${this.major}`;
+        let description = super.getGreeting()
+        if (this.hasMajor()) {
+            description += `and my major is ${this.major}`
+        }
+        return description;
     }
 }
 
